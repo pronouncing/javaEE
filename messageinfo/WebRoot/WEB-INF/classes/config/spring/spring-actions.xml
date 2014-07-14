@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+     http://www.springframework.org/schema/beans/spring-beans-2.0.xsd   
+     http://www.springframework.org/schema/mvc
+     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+        
+    <!-- 提供对spring mvc注解、验证支持 -->
+	<mvc:annotation-driven /> 
+	
+	<!-- 注解控制器所在包，框架将解析该包下所有类中的mvc注解 -->
+	<context:component-scan base-package="com.info.action" />
+	
+	<!-- 将静态资源交默认处理器去操作 -->
+	<mvc:default-servlet-handler/>
+	
+	 <bean id="multipartResolver"
+	  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  	<property name="maxUploadSize" value="10000000" />
+	 </bean>
+	
+	<bean class="org.codehaus.jackson.map.ObjectMapper">
+		<property name="dateFormat" >
+			<bean class="java.text.SimpleDateFormat">
+				<constructor-arg>
+					<value>yyyy-MM-dd</value>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- jsp视图支持 
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/classes/resources/appMessages" />
+	</bean>
+	
+
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	
+		<property name="defaultErrorView" value="/commons/error"></property>
+		<property name="exceptionMappings">
+			<props>
+			</props>
+		</property>
+	</bean>
+	
+
+	<bean name="messageConverters" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="mappingJacksonHttpMessageConverter"  
+	class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+	-->
+
+</beans>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>留言板</title>
+<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+	/*添加方法*/
+	$(function() {
+		$("#btn_submit").click(function() {
+			$.ajax({
+				type : "post",
+				url : "addmsinfo",
+				cache : false,
+				dataType : "json",
+				data : {
+					message : $("input[name='message']").val(),
+					messageinfo : $("#messageinfo").val()
+				},
+				success : function(result) {
+					if (result.code == 1) {
+						$(".btn2").click(alert("添加成功留言信息成功！"));
+						window.parent.refresh();
+					} else {
+						alert("添加失败!原因：！" + result.msg);
+					}
+				}
+			});
+		});
+	});
+	$(function() {
+		//通过ID获取数据
+		$.ajax({
+			type : "get",
+			url : "findAllmesginfo",
+			cache : false,
+			dataType : "json",
+			success : function(result) {
+				if (result.code == 1) {
+					var datas = "";
+					$(result.data).each(function() {
+						datas = datas + this.message + this.messageinfo;
+						alert(datas);
+					});
+				} else {
+					alert("获取数据发生错误!！");
+				}
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="changGuishuxing">
+		<form id="mymesginfo" action="index.html" method="post">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0"
+				class="newContTab">
+
+				<tr>
+					<th>留言板：</th>
+					<td><input class="message" type="text" name="message" /></td>
+				</tr>
+				<tr>
+					<th>留言信息：</th>
+					<td><textarea class="messageinfo"
+							style="width:330px; height:100px" id="messageinfo"></textarea></td>
+				</tr>
+				<tr>
+				</tr>
+				</tr>
+
+				<div>
+					<tr>
+						<td>&nbsp;</td>
+						<tr>
+							<td>&nbsp;</td>
+							<td><input type="button" id="btn_submit" class="btn2"
+								value="提 交" /> <input type="reset" value="重 置" /> <input
+								type="button" id="btn_close" value="返 回"
+								onclick="window.history.back()" /></td>
+						</tr>
+				</div>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<!-- 值传递JS -->
+<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+<!-- jquery传ID值组件 -->
+<script type="text/javascript" src="js/jquery.query.js"></script>
+
+<link href="css/tablemain.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/tablejquery-ui.css" />
+<script type="text/javascript" src="js/tablejquery.js"></script>
+<script type="text/javascript" src="js/tablelist.js"></script>
+<script type="text/javascript" src="js/tablejquery-ui.js"></script>
+
+
+
+<style type="text/css">
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+	color: #999;
+}
+a:active {
+	text-decoration: none;
+	color: #999;
+}
+body {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+</style>
+
+
+
+
+
+<script type="text/javascript">
+alert("1");
+
+var pageSize = 3;
+var pageNo = 1;
+function refresh(){
+	getUserByPage(pageNo, pageSize);
+};
+function getUserByPage(pageNo, pageSize) {
+alert("2");
+    $.ajax({
+    	type: "get",
+        url:"Mesginfo/"+ pageNo,
+        cache: false,
+        dataType: "json",
+        data: "ps=" + pageSize,
+        success: function(result) {
+            if (result.code == 1) {
+
+                var datas = "";
+                $(result.data.data).each(function() {
+                    datas = datas + "<tr><td>" + this.message + "</td></tr>"
+                });
+
+                $("#Mesginfo").html("");
+                $(datas).appendTo("#Mesginfo");
+
+                $("#pageInfo").text(result.data.currentPageNo + "/" + result.data.totalPages);
+                $("#pageCount").text(result.data.totalRows);
+                $(".fp").attr("href", result.data.firstPageNo);
+                $(".pp").attr("href", result.data.prePageNo);
+                $(".np").attr("href", result.data.nextPageNo);
+                $(".lp").attr("href", result.data.lastPageNo);
+
+            } else {
+                alert("取分页数据发生错误!！");
+            }
+        }
+    });
+
+}
+$(function(){
+    	getUserByPage(1,pageSize);
+		$(".page").click(function(){
+		pageNo = $(this).attr("href");
+		getUserByPage(pageNo,pageSize);
+		return false;
+	});
+});
+
+</script>
+</head>
+<body>
+
+<div> 
+	<table width="50%" border="0" cellpadding="0" cellspacing="0" class="listTable">
+		<tr> <th>留言</th> <th>留言板</th></tr>
+		<tbody id="Mesginfo">
+		</tbody>
+	</table>
+</div>
+
+    <div class="selectOp">
+    <div class="pages">
+		<span id="pageInfo"></span> 共<span id="pageCount"></span>条记录  
+		<a href="1" class="page fp">第一页</a>&nbsp;&nbsp;
+		<a href="#" class="page pp" >上一页</a>&nbsp;&nbsp;
+		<a href="#" class="page np">下一页</a>&nbsp;&nbsp;
+		<a href="#" class="page lp">末一页</a>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+     http://www.springframework.org/schema/beans/spring-beans-2.0.xsd   
+     http://www.springframework.org/schema/tx   
+     http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+     
+     <!-- 读取配置参数 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:database-config.properties</value>
+		</property>
+	</bean>
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>${driverClass}</value>
+		</property>
+		<property name="url">
+			<value>${url}</value>
+		</property>
+		<property name="username">
+			<value>${username}</value>
+		</property>
+		<property name="password">
+			<value>${password}</value>
+		</property>
+		<property name="defaultAutoCommit">
+			<value>false</value>
+		</property>
+	</bean>
+	
+	<!-- hibernate参数配置文件，包括缓存的信息 -->
+	<bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location">
+			<value>classpath:hibernate-config.properties</value>
+		</property>
+	</bean>
+	
+
+
+	<!--  配置sessionFactory-->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties" ref="hibernateProperties"></property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.info.model</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 对注解事务的支持 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- 注解驱动 -->
+	<context:component-scan base-package="*.*" />
+	
+	<!-- 通用dao hibernate实现 -->
+	<bean id="baseDao" class="com.lovo.framework.persistence.BaseDaoHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+</beans>

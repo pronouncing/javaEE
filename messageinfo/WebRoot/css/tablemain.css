@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+body,ul,li,form,p{ padding:0; margin:0; list-style:none; font-family:Verdana, Arial, Helvetica, sans-serif, "宋体"; _font-family:"宋体"; font-size:14px; color:#424242;}
+
+html {_overflow-x: hidden; _overflow-y: auto; }
+html body{_margin-right:15px;}
+
+a:link,a:visited{ font-family:Arial, Helvetica, sans-serif; text-decoration:none;  text-decoration: underline}
+#importTip a:link,#importTip a:visited{ color:#f60;}
+a:hover,a:active{ text-decoration:underline; color:#f30;}
+img{border:none}
+
+#mainBox{ border:1px solid #6EAA87; margin:10px; margin-bottom:20px; zoom:1; padding:2px; height:500px;}
+#position{ background:#DFDFDF url(../images/positionBg.jpg) repeat-x; height:26px; line-height:26px; padding-left:10px; }
+#searchBox{ border:1px solid #6EAA87; background:#E4FAF2; padding:5px 10px; line-height:26px; margin-top:8px; margin-bottom:10px;}
+#optsBox{ padding:0 0 4px 0;}
+#importTip{ width:80%; margin:30px auto 0 auto; line-height:24px;}
+#newLevel{ width:80%; margin:0 auto; margin-bottom:20px; text-align:center; text-align:center}
+#newLevel .newContIpt{ width:20%;}
+#userInfo{ padding-left:10px; font-weight:bold; line-height:30px; margin-top:10px;}
+#module{ width:400px; float:left}
+#module div{ width:100px; float:left; text-align:left; line-height:26px;}
+
+.searchIpt,.newContIpt{ width:15%; height:18px; line-height:18px; padding:1px; border:1px solid #ccc; vertical-align:middle;}
+.newContIpt{ width:50%; padding:1px 3px;}
+.searchSel{font-size:12px; vertical-align:middle;}
+.btn2,.btn4,.btn5,.btn6,.b_add,.b_delete,.b_execute,.b_move,.b_satrt,.b_supend{ height:24px; line-height:22px; font-variant:normal; padding:2px; vertical-align:middle; border:none; cursor:pointer}
+.btn2{width:58px; background:url(../images/btn2.jpg) no-repeat}
+.btn4{width:68px; background:url(..images/btn4.gif) no-repeat}
+.btn5{width:54px; background:url(../images/btn2.jpg) no-repeat}
+
+.b_add{background:url(../images/b_add.jpg) no-repeat}
+.b_delete{background:url(../images/b_delete.gif) no-repeat}
+.b_execute{background:url(../images/b_execute.jpg) no-repeat}
+.b_move{background:url(../images/b_move.jpg) no-repeat}
+.b_satrt{background:url(../images/b_satrt.jpg) no-repeat}
+.b_supend{background:url(../images/b_supend.jpg) no-repeat}
+
+
+.btn6{width:100px; background:url(..images/btn6.gif) no-repeat}
+.btnGo{width:40px; height:22px; border:none; cursor:pointer; margin-top:2px; text-align:center; background:url(../images/btnGo.jpg) no-repeat 2px 0}
+select{border:1px solid #999;}
+.textArea{ width:60%; height:60px;border:1px solid #999;padding:1px 3px;}
+textarea{ font-size:12px;} 
+.revList{width:51%; height:200px;}
+
+.cont_add{ padding:30px 0;}
+.listTable,.newContTab,.detailTab{ border:1px solid #E8F5FE border-collapse:collapse; margin:0 auto}
+.listTable th,.listTable td,.newContTab th,.newContTab td,.detailTab th,.detailTab td{ line-height:30px; padding-left:5px; text-align:left;empty-cells:show; border-bottom:1px solid #6EAA87}
+.newContTab th,.newContTab td,.detailTab th,.detailTab td{ line-height:36px; }
+.listTable th,.newContTab thead td,.detailTab thead td{ background: #E8F5FE; font-weight:bold;}
+.newContTab th,.detailTab th{ text-align:right; font-weight:normal}
+.newContTab thead td,.detailTab thead td{ text-align:center;line-height:40px;}
+.newContTab thead td.left{ text-align:left}
+.detailTab thead td{ text-align:left;line-height:40px;}
+.newContTab td.btnTdBox,.cont_add .listTable th,.cont_add .listTable td{ text-align:center}
+#levelTbd .newContIpt{ width:30%; }
+#levelTbd thead th,#levelTbd td{ text-align:center; _height:36px;}
+
+.mmsContBox{ width:60%; line-height:20px; padding:8px 0}
+
+.selectOp{ padding:4px 0 0 8px; height:28px;}
+.selectOp .pages{ float:right; padding-right:2%; text-align:right}
+.selectOp .pages .input{width:20px; height:17px; line-height:17px; padding:1px; border:1px solid #999; vertical-align:middle}
+
+#popMain{ margin:5px;}
+#popSearch{ border:1px solid #6EAA87; margin-bottom:10px;}
+#popSearch h1{font-size:12px; padding:0; margin:0; line-height:30px; border-bottom:1px solid #6EAA87; padding-left:5px;}
+#popSearch td{ line-height:30px;}
+#popSearch .searchBox{ padding:5px;}
+#popSearch .searchBox .searchIpt{ width:25%;}
+
+.tip{ color:#6EAA87;}
+.error,.required,.note{ color:#f30;}
+
+.curTd{background:#E4FAF2}
+
+
+#td2{ color:#03F}
+#yuJingJieGuoLeft{ width:300px; height:600px; border:#0000FF}
+#yuJingJieGuoRigRight{ float:right; margin-top:-600px; margin-left:303px; width:auto; height:auto}
