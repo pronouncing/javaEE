@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>版本号</title>
+<!-- 值传递JS -->
+<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+<!-- jquery传ID值组件 -->
+<script type="text/javascript" src="js/jquery.query.js"></script>
+
+<link href="css/tablemain.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/tablejquery-ui.css" />
+<script type="text/javascript" src="js/tablejquery.js"></script>
+<script type="text/javascript" src="js/tablelist.js"></script>
+<script type="text/javascript" src="js/tablejquery-ui.js"></script>
+
+
+
+<style type="text/css">
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+	color: #999;
+}
+a:active {
+	text-decoration: none;
+	color: #999;
+}
+body {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+</style>
+<script type="text/javascript">
+
+	$(function() {
+		//查询所有
+
+		$.ajax({
+			type : "get",
+			url : "findAllmesginfo",
+			cache : false,
+			dataType : "json",
+		
+			success : function(result) {
+				
+				if (result.code == 1) {
+					var datas = "";
+					$(result.data).each(function() {
+						datas = datas + "<tr><td>" + this.dataTime + "</td></tr>"
+					
+					});
+					  $("#select1").html("");
+                	  $(datas).appendTo("#select1");
+				} else {	
+					alert("获取数据发生错误!！");
+				}
+			}
+		});
+	});
+</script>
+</head>
+<body>
+
+<div> 
+	<table width="50%" border="0" cellpadding="0" cellspacing="0" class="listTable">
+		<tr> <th>版本</th> <th>版本号</th> <th>版本时间</th></tr>
+		<tbody id="select1">
+		</tbody>
+	</table>
+</div>
+
+
+</body>
+</html>
